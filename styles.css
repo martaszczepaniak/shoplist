@@ -1,0 +1,123 @@
+body {
+  background-color: #eee
+}
+
+div {
+  margin: 20px;
+}
+
+.products {
+  float: left;
+  background: rgb(238, 238, 238);
+  width: 300px;
+}
+
+.products>h1 {
+  color: #424242;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 700;
+}
+
+.products>ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.products>ul>li {
+  font-family: Arial;
+  font-weight: 700;
+  background-color: #FFF;
+  color: #3299bb;
+  display: block;
+  padding: 15px 30px;
+  margin: 5px;
+  font-size: 15px;
+  line-height: 15px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+  position: relative;
+}
+
+.products>ul>li>a:hover {
+  box-shadow: none;
+}
+
+.products>ul>li>a:active {
+  transform: rotate(90deg);
+}
+
+.products>ul>li>a {
+  position: absolute;
+  top: 7.5px;
+  right: 15px;
+  display: block;
+  border-radius: 50%;
+  background-color: #ff9900;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  box-shadow: gray 1px 1px 4px;
+  transition: transform 0.1s linear;
+}
+
+.basket {
+  float: left;
+  background: rgb(238, 238, 238);
+  width: 300px;
+}
+
+.basket>h1 {
+  color: #424242;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 700;
+}
+
+.basket>ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.basket>ul>li {
+  font-family: Arial;
+  font-weight: 700;
+  background-color: #FFF;
+  color: #3299bb;
+  display: block;
+  padding: 15px 30px;
+  margin: 5px;
+  font-size: 15px;
+  line-height: 15px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+  position: relative;
+}
+
+.basket>ul>li>a:hover {
+  box-shadow: none;
+}
+
+.basket>ul>li>a {
+  position: absolute;
+  top: 7.5px;
+  right: 15px;
+  display: block;
+  border-radius: 50%;
+  background-color: #ff9900;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  box-shadow: gray 1px 1px 4px;
+  transition: transform 0.1s linear;
+}
