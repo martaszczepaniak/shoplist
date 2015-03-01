@@ -22,4 +22,8 @@ $(document).ready(function() {
     basketListItem.append(itemLink)
     $("#basket-list").append(basketListItem)
   })
+
+  $("body").on("click", "#basket-list a", function(event) {
+    $(event.currentTarget).parent().remove()
+  })
 })
