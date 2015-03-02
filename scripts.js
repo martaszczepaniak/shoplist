@@ -56,18 +56,17 @@ $(document).ready(function() {
   }
 
   var generateListItem = function(product, linkText) {
-    listItem = $("<li>")
-    listItem.text(product.name)
-    listItem.attr("data-id", product.id)
-    itemLink = $("<a>")
-    itemLink.text(linkText)
-    listItem.append(itemLink)
-    return listItem
+    listItem = $("<li>").text(product.name).attr("data-id", product.id)
+    
+    itemLink = $("<a>").text(linkText)
+    
+    return listItem.append(itemLink)
   }
 
   var addItemToBasket = function(event) {
     productId = parseInt($(event.currentTarget).parent().attr("data-id"))
     product = _.find(productsList.products, { id: productId })
+    
     basketList.products.push(product)
    
     renderBasket()
