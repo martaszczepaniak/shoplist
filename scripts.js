@@ -56,7 +56,7 @@ $(document).ready(function() {
   }
 
   var generateListItem = function(product, linkText) {
-    listItem = $("<li>").text(product.name).attr("data-id", product.id)
+    listItem = $("<li>").text(product.name).attr("data-id", product.id).attr("data-number", product.number)
     
     itemLink = $("<a>").text(linkText)
     
@@ -66,15 +66,28 @@ $(document).ready(function() {
   var addItemToBasket = function(event) {
     productId = parseInt($(event.currentTarget).parent().attr("data-id"))
     product = _.find(productsList.products, { id: productId })
-    
-    basketList.products.push(product)
-   
+
+    basketProduct = _.find(basketList.products, { id: productId })
+
+    if(basketProduct) {
+      basketProduct.number += 1
+    } else {
+      product.number = 1
+      basketList.products.push(product)
+    }
+
     renderBasket()
   }
 
   var removeItemFromBasket = function(event) {
     productId = parseInt($(event.currentTarget).parent().attr("data-id"))
-    _.remove(basketList.products, { id: productId })
+    product = _.find(basketList.products, { id: productId })
+
+    if(product.number > 1) {
+      product.number -= 1
+    } else {
+      _.remove(basketList.products, { id: productId })  
+    }
 
     renderBasket()
   }
