@@ -36,54 +36,53 @@ $(document).ready(function() {
     ]
   }
 
-  window.productsList = productsList
-
   var basketList = {
     products: []
   }
 
-  window.basketList = basketList
+  var renderBasket = function() {
+    $("#basket-list").html("")
+    basketList.products.forEach(function(product) {
+      basketListItem = generateListItem(product, "-")
+      $("#basket-list").append(basketListItem)
+    })
+  }
 
-  productsList["products"].forEach(function(product) {
-    productListItem = $("<li>")
-    productListItem.text(product["name"])
-    productListItem.attr("data-id", product["id"])
+  var renderProductsList = function() {
+    productsList.products.forEach(function(product) {
+      productListItem = generateListItem(product, "+")
+      $("#products-list").append(productListItem)
+    })
+  }
+
+  var generateListItem = function(product, linkText) {
+    listItem = $("<li>")
+    listItem.text(product.name)
+    listItem.attr("data-id", product.id)
     itemLink = $("<a>")
-    itemLink.text("+")
-    productListItem.append(itemLink)
-    $("#products-list").append(productListItem)
-  })
+    itemLink.text(linkText)
+    listItem.append(itemLink)
+    return listItem
+  }
 
-  $("body").on("click", "#products-list a", function(event) {
+  var addItemToBasket = function(event) {
     productId = parseInt($(event.currentTarget).parent().attr("data-id"))
     product = _.find(productsList.products, { id: productId })
     basketList.products.push(product)
-    $("#basket-list").html("")
-    basketList["products"].forEach(function(product) {
-      basketListItem = $("<li>")
-      basketListItem.text(product["name"])
-      basketListItem.attr("data-id", product["id"])
-      itemLink = $("<a>")
-      itemLink.text("-")
-      basketListItem.append(itemLink)
-      $("#basket-list").append(basketListItem)
-    })
-  })
+   
+    renderBasket()
+  }
 
-  $("body").on("click", "#basket-list a", function(event) {
+  var removeItemFromBasket = function(event) {
     productId = parseInt($(event.currentTarget).parent().attr("data-id"))
-    product = _.find(basketList.products, { id: productId })
-    index = basketList.products.indexOf(product)
-    basketList.products.splice(index, 1)
-    $("#basket-list").html("")
-    basketList["products"].forEach(function(product) {
-      basketListItem = $("<li>")
-      basketListItem.text(product["name"])
-      basketListItem.attr("data-id", product["id"])
-      itemLink = $("<a>")
-      itemLink.text("-")
-      basketListItem.append(itemLink)
-      $("#basket-list").append(basketListItem)
-    })
-  })
+    _.remove(basketList.products, { id: productId })
+
+    renderBasket()
+  }
+
+  $("body").on("click", "#products-list a", addItemToBasket)
+
+  $("body").on("click", "#basket-list a", removeItemFromBasket)
+
+  renderProductsList()
 })
